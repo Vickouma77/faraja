@@ -27,7 +27,7 @@ services:
     container_name: axonserver
     environment:
       AXONIQ_AXONSERVER_HOSTNAME: localhost
-      AXONIQ_AXONSERVER_DEFAULT_CONTEXT: ${spring.application.name}
+      AXONIQ_AXONSERVER_DEFAULT_CONTEXT: $${spring.application.name}
     ports:
       - "8024:8024"  # for HTTP requests
       - "8124:8124"  # for Axon server connections
