@@ -19,18 +19,6 @@ services:
     command: redis-server --appendonly yes
     volumes:
       - redis_data:/data
-  
-  minio:
-  image: bitnami/minio:latest
-  container_name: minio-onboarding
-  environment:
-    MINIO_ROOT_USER: QKwR2V0d76wNQDqxhJBV
-    MINIO_ROOT_PASSWORD: JhwhdY4cwNboSIi58uffRvSPjHwF8SqMGJqEtSBV
-  ports:
-    - "9000:9000"
-  volumes:
-    - minio_data:/data
-  command: minio server /data
 
   axonserver:
     image: axoniq/axonserver
@@ -43,19 +31,19 @@ services:
     volumes:
       - axonserver_data:/data
 
-  tempo:
-    image: grafana/tempo:latest
-    container_name: tempo
+  minio:
+    image: 'bitnami/minio:2024.10.2'
     ports:
-      - "3200:3200"
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password
     volumes:
-      - ./tempo.yaml:/etc/tempo.yaml
-    command: tempo -config.file=/etc/tempo.yaml
-
+      - minio_data:/data
 
 volumes:
   postgres_data:
   redis_data:
   axonserver_data:
-  tempo_data:
   minio_data:
