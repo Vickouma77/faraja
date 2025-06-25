@@ -1,0 +1,86 @@
+---
+const stats = [
+  { number: "2,500+", label: "Women Supported", icon: "👥" },
+  { number: "15,000+", label: "Dignity Packs Distributed", icon: "📦" },
+  { number: "500+", label: "Girls Staying in School", icon: "🎓" },
+  { number: "50+", label: "Community Workshops", icon: "🏫" }
+];
+
+const testimonials = [
+  {
+    quote: "EmpowerHer gave me the confidence to pursue my education. The dignity packs and support meant I never had to miss school.",
+    author: "Sarah M.",
+    role: "University Student"
+  },
+  {
+    quote: "The advocacy work they do for our community is life-changing. They treat everyone with respect and dignity.",
+    author: "Maria K.",
+    role: "Community Member"
+  },
+  {
+    quote: "Thanks to their HIV support services, I now have access to treatment and a support network that understands.",
+    author: "Anonymous",
+    role: "Program Participant"
+  }
+];
+---
+
+<section id="impact" class="py-20 bg-white relative overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.pexels.com/photos/6647003/pexels-photo-6647003.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+         alt="Community impact" 
+         class="w-full h-full object-cover opacity-10">
+    <div class="absolute inset-0 bg-white/80"></div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Stats Section -->
+    <div class="text-center mb-20">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Impact</h2>
+      <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+        Together, we're creating measurable change in our community. Here's what we've accomplished so far.
+      </p>
+      
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+            <div class="text-4xl mb-2">{stat.icon}</div>
+            <div class="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">{stat.number}</div>
+            <div class="text-gray-600 font-medium">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Testimonials Section -->
+    <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-3xl p-8 lg:p-12 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <img src="https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+             alt="Community testimonials background" 
+             class="w-full h-full object-cover">
+      </div>
+      
+      <div class="relative z-10">
+        <h3 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12">Stories of Impact</h3>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+              <div class="mb-4">
+                <svg class="w-8 h-8 text-primary-400" fill="currentColor" viewBox="0 0 32 32">
+                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/>
+                </svg>
+              </div>
+              <p class="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
+              <div>
+                <div class="font-semibold text-gray-900">{testimonial.author}</div>
+                <div class="text-sm text-gray-500">{testimonial.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

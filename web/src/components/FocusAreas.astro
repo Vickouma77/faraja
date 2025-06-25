@@ -1,0 +1,66 @@
+---
+const focusAreas = [
+  {
+    title: "Women's Rights Advocacy",
+    description: "Fighting for gender equality, workplace rights, and protection from violence and discrimination.",
+    icon: "👩‍⚖️",
+    color: "primary"
+  },
+  {
+    title: "Sex Workers' Rights",
+    description: "Advocating for safety, dignity, and human rights for all sex workers in our community.",
+    icon: "🤝",
+    color: "accent"
+  },
+  {
+    title: "HIV Support Services",
+    description: "Providing care, support, and advocacy for people living with HIV, reducing stigma and improving access to treatment.",
+    icon: "❤️",
+    color: "secondary"
+  },
+  {
+    title: "Education for Girls",
+    description: "Supporting school-going girls with resources, mentorship, and advocacy for educational equality.",
+    icon: "📚",
+    color: "primary"
+  },
+  {
+    title: "Sanitary Items & Dignity Packs",
+    description: "Distributing essential hygiene products and dignity packs to ensure no woman or girl goes without.",
+    icon: "🎒",
+    color: "accent"
+  },
+  {
+    title: "Community Outreach",
+    description: "Building awareness, providing education, and creating safe spaces for dialogue and support.",
+    icon: "🌟",
+    color: "secondary"
+  }
+];
+---
+
+<section id="focus" class="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Focus Areas</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        We work across multiple interconnected areas to create comprehensive support 
+        and advocacy for women and marginalized communities.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {focusAreas.map((area) => (
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="text-center mb-6">
+            <div class={`w-16 h-16 mx-auto mb-4 rounded-full bg-${area.color}-100 flex items-center justify-center text-2xl`}>
+              {area.icon}
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">{area.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{area.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
