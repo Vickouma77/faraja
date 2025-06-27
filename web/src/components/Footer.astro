@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import Logo from '../assets/farajawomen.png';
 ---
 
 <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
@@ -14,11 +16,12 @@
         <div class="flex items-center space-x-3 mb-4">
           <div class="w-10 h-10 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full flex items-center justify-center">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <Image src={Logo} alt="faraja ">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
           </div>
           <h3 class="text-2xl font-bold bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
-            EmpowerHer
+            Faraja Women
           </h3>
         </div>
         <p class="text-gray-300 mb-6 max-w-md">
@@ -59,15 +62,15 @@
       <div>
         <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
         <div class="space-y-2 text-gray-300">
-          <p>📧 info@empowerher.org</p>
-          <p>📞 +1 (555) 123-4567</p>
-          <p>📍 123 Community St<br>Your City, State 12345</p>
+          <p>📧 info@farajawomen.org</p>
+          <p>📞 +254 7 123-4567</p>
+          <p>📍 Migori - Suna</p>
         </div>
       </div>
     </div>
     
     <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-      <p>&copy; 2024 EmpowerHer. All rights reserved. | Privacy Policy | Terms of Service</p>
+      <p>&copy; 2025 Faraja Women. All rights reserved. | Privacy Policy | Terms of Service</p>
     </div>
   </div>
 </footer>
