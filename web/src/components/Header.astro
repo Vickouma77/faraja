@@ -1,4 +1,6 @@
 ---
+import Logo from '../assets/farajawomen.png';
+import { Image } from 'astro:assets';
 ---
 
 <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50">
@@ -6,10 +8,10 @@
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center">
         <div class="flex-shrink-0 flex items-center space-x-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
+          <div class="w-10 h-10 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full flex items-center justify-center">
+            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <Image src={Logo} alt="faraja" class="w-10 h-10 object-contain" />
+            </a>
           </div>
           <h1 class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
             Faraja Women
@@ -73,15 +75,15 @@
       isMenuOpen = !isMenuOpen;
       
       if (isMenuOpen) {
-        mobileMenu.classList.remove('hidden');
-        menuIcon.classList.add('hidden');
-        closeIcon.classList.remove('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'true');
+        if (mobileMenu) mobileMenu.classList.remove('hidden');
+        if (menuIcon) menuIcon.classList.add('hidden');
+        if (closeIcon) closeIcon.classList.remove('hidden');
+        if (mobileMenuButton) mobileMenuButton.setAttribute('aria-expanded', 'true');
       } else {
-        mobileMenu.classList.add('hidden');
-        menuIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        if (mobileMenu) mobileMenu.classList.add('hidden');
+        if (menuIcon) menuIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+        if (mobileMenuButton) mobileMenuButton.setAttribute('aria-expanded', 'false');
       }
     }
     
@@ -92,7 +94,9 @@
     }
     
     // Toggle menu when button is clicked
-    mobileMenuButton.addEventListener('click', toggleMenu);
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener('click', toggleMenu);
+    }
     
     // Close menu when a link is clicked
     mobileMenuLinks.forEach(link => {
@@ -101,7 +105,11 @@
     
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-      if (isMenuOpen && !mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+      if (
+        isMenuOpen &&
+        (!mobileMenuButton || !mobileMenuButton.contains(event.target as Node)) &&
+        (mobileMenu && mobileMenu.contains(event.target as Node) === false)
+      ) {
         closeMenu();
       }
     });
