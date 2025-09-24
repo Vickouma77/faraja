@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+// Define the blog post type manually
+interface BlogPost {
+  slug: string;
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    author: string;
+    tags: string[];
+    featuredImage?: string;
+  };
+  render: () => Promise<{ Content: any }>;
+}
+
+const posts: BlogPost[] = await getCollection('blog') as BlogPost[];
+const sortedPosts = posts.sort((a: BlogPost, b: BlogPost) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<Layout title="Blog - Faraja Women" description="Read our latest articles, stories, and updates about women's empowerment, advocacy, and community impact.">
+  <Header />
+
+  <main class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary-600 to-accent-600 text-white py-16 lg:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+          Our Blog
+        </h1>
+        <p class="text-lg sm:text-xl opacity-90 max-w-3xl mx-auto">
+          Stories of impact, advocacy updates, and insights from our work empowering women and transforming communities.
+        </p>
+      </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-16 lg:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {sortedPosts.length > 0 ? (
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {sortedPosts.map((post: BlogPost) => (
+              <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                {post.data.featuredImage && (
+                  <div class="aspect-video overflow-hidden">
+                    <img
+                      src={post.data.featuredImage}
+                      alt={post.data.title}
+                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+                <div class="p-6">
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    {post.data.tags.map((tag: string) => (
+                      <span class="inline-block bg-primary-100 text-primary-800 text-xs px-2 py-1 rounded-full font-medium">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                    <a href={`/blog/${post.slug}`} class="hover:text-primary-600 transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h2>
+                  <p class="text-gray-600 mb-4 line-clamp-3">
+                    {post.data.description}
+                  </p>
+                  <div class="flex items-center justify-between text-sm text-gray-500">
+                    <span>By {post.data.author}</span>
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-16">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">No blog posts found</h2>
+            <p class="text-gray-600">Check back soon for new articles and stories from our community.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

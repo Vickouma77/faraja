@@ -1,6 +1,9 @@
 ---
 import Logo from '../assets/farajawomen.png';
 import { Image } from 'astro:assets';
+
+const isHomePage = Astro.url.pathname === '/';
+const linkPrefix = isHomePage ? '' : '/';
 ---
 
 <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50">
@@ -22,10 +25,11 @@ import { Image } from 'astro:assets';
       <!-- Desktop Navigation -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-8">
-          <a href="#about" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
-          <a href="#focus" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">Our Focus</a>
-          <a href="#impact" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">Impact</a>
-          <a href="#support" class="bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-700 transition-colors">Support Us</a>
+          <a href={`${linkPrefix}#about`} class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-md">About</a>
+          <a href={`${linkPrefix}#focus`} class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-md">Our Focus</a>
+          <a href={`${linkPrefix}#impact`} class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-md">Impact</a>
+          <a href="/blog" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-md">Blog</a>
+          <a href={`${linkPrefix}#support`} class="bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Support Us</a>
         </div>
       </div>
       
@@ -51,10 +55,11 @@ import { Image } from 'astro:assets';
     <!-- Mobile Navigation Menu -->
     <div id="mobile-menu" class="md:hidden hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg">
-        <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors mobile-menu-link">About</a>
-        <a href="#focus" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors mobile-menu-link">Our Focus</a>
-        <a href="#impact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors mobile-menu-link">Impact</a>
-        <a href="#support" class="block mx-3 my-2 px-4 py-2 text-base font-medium bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors text-center mobile-menu-link">Support Us</a>
+        <a href={`${linkPrefix}#about`} class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors mobile-menu-link focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">About</a>
+        <a href={`${linkPrefix}#focus`} class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors mobile-menu-link focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Our Focus</a>
+        <a href={`${linkPrefix}#impact`} class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors mobile-menu-link focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Impact</a>
+        <a href="/blog" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors mobile-menu-link focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Blog</a>
+        <a href={`${linkPrefix}#support`} class="block mx-3 my-2 px-4 py-2 text-base font-medium bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors text-center mobile-menu-link focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Support Us</a>
       </div>
     </div>
   </nav>
